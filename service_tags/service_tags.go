@@ -16,20 +16,20 @@ type ServiceTags struct {
 
 //Value represents a ServiceTag Value
 type Value struct {
-	Name       string   `json:"name"`
 	Id         string   `json:"id"`
+	Name       string   `json:"name"`
 	Properties Property `json:"properties"`
 }
 
 //Property represents a Value property
 type Property struct {
+	AddressPrefixes []string `json:"addressPrefixes"`
 	ChangeNumber    int64    `json:"changeNumber"`
+	NetworkFeatures []string `json:"networkFeatures"`
+	Platform        string   `json:"platform"`
 	Region          string   `json:"region"`
 	RegionId        int64    `json:"regionId"`
-	Platform        string   `json:"platform"`
 	SystemService   string   `json:"systemService"`
-	AddressPrefixes []string `json:"addressPrefixes"`
-	NetworkFeatures []string `json:"networkFeatures"`
 }
 
 //New is a constructor for ServiceTags

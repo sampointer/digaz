@@ -14,6 +14,24 @@ type ServiceTags struct {
 	Values       []Value `json:"values"`
 }
 
+//Value represents a ServiceTag Value
+type Value struct {
+	Name       string   `json:"name"`
+	Id         string   `json:"id"`
+	Properties Property `json:"properties"`
+}
+
+//Property represents a Value property
+type Property struct {
+	ChangeNumber    int64    `json:"changeNumber"`
+	Region          string   `json:"region"`
+	RegionId        int64    `json:"regionId"`
+	Platform        string   `json:"platform"`
+	SystemService   string   `json:"systemService"`
+	AddressPrefixes []string `json:"addressPrefixes"`
+	NetworkFeatures []string `json:"networkFeatures"`
+}
+
 //New is a constructor for ServiceTags
 func New(r io.Reader) (*ServiceTags, error) {
 	var serviceTags ServiceTags

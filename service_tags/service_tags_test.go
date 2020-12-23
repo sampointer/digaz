@@ -40,12 +40,23 @@ func TestServiceTags(t *testing.T) {
 			t.Parallel()
 			require.NotZero(t, st.Values[0].Properties, "has properties")
 
+			t.Run("has network features", func(t *testing.T) {
+				t.Parallel()
+				require.NotZero(t, len(st.Values[0].Properties.NetworkFeatures))
+			})
+
 			t.Run("has flat properties", func(t *testing.T) {
 				t.Parallel()
 				require.NotZero(t, st.Values[0].Properties.ChangeNumber)
 				require.NotZero(t, st.Values[0].Properties.Platform)
 				require.NotZero(t, st.Values[0].Properties.SystemService)
 			})
+
+			t.Run("has address prefixes", func(t *testing.T) {
+				t.Parallel()
+				require.NotZero(t, len(st.Values[0].Properties.AddressPrefixes))
+			})
+
 		})
 	})
 }

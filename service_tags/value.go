@@ -2,10 +2,9 @@ package service_tags
 
 //Value represents a ServiceTag value
 type Value struct {
-	Name            string   `json:"name"`
-	Id              string   `json:"id"`
-	Properties      Property `json:"properties"`
-	NetworkFeatures []string `json:"networkFeatures"`
+	Name       string   `json:"name"`
+	Id         string   `json:"id"`
+	Properties Property `json:"properties"`
 }
 
 //Property represents a Value property
@@ -16,4 +15,5 @@ type Property struct {
 	Platform        string   `json:"platform"`
 	SystemService   string   `json:"systemService"`
 	AddressPrefixes []string `json:"addressPrefixes"`
+	NetworkFeatures []string `json:"networkFeatures"`
 }

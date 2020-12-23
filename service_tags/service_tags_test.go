@@ -29,5 +29,23 @@ func TestServiceTags(t *testing.T) {
 	t.Run("has values", func(t *testing.T) {
 		t.Parallel()
 		require.NotZero(t, len(st.Values), "should have a least one value")
+
+		t.Run("value has name and ID", func(t *testing.T) {
+			t.Parallel()
+			require.NotZero(t, st.Values[0].Name, "has a name")
+			require.NotZero(t, st.Values[0].Id, "has an ID")
+		})
+
+		t.Run("has properties", func(t *testing.T) {
+			t.Parallel()
+			require.NotZero(t, st.Values[0].Properties, "has properties")
+
+			t.Run("has flat properties", func(t *testing.T) {
+				t.Parallel()
+				require.NotZero(t, st.Values[0].Properties.ChangeNumber)
+				require.NotZero(t, st.Values[0].Properties.Platform)
+				require.NotZero(t, st.Values[0].Properties.SystemService)
+			})
+		})
 	})
 }

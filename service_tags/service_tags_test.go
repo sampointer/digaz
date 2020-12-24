@@ -28,6 +28,26 @@ func TestLookupIPv4(t *testing.T) {
 
 }
 
+func TestLookupIPv6(t *testing.T) {
+	t.Parallel()
+
+	doc, err := os.Open("../testdata/ServiceTags_Public_20201214.json")
+	require.NoError(t, err)
+
+	st, err := New(doc)
+	require.NoError(t, err)
+
+	t.Run("looks up valid IPv6", func(t *testing.T) {
+		res, err := st.LookupIPv6(net.ParseIP("2603:1000:4:402::179"))
+		require.NoError(t, err)
+		t.Logf("%+#v", res[3])
+		require.Equal(t, 4, len(res))
+		require.Equal(t, res[0].Name, "ActionGroup")
+		require.Equal(t, res[0].Id, "ActionGroup")
+	})
+
+}
+
 func TestServiceTags(t *testing.T) {
 	t.Parallel()
 

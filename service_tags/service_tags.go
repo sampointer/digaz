@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io"
 	"io/ioutil"
+	"net"
 )
 
 //ServiceTags represents this document:
@@ -30,6 +31,27 @@ type Property struct {
 	Region          string   `json:"region"`
 	RegionId        int64    `json:"regionId"`
 	SystemService   string   `json:"systemService"`
+}
+
+//LookupIPv4 returns the Value structs that contain a prefix that contains the
+//passed IPv4 address
+func (s *ServiceTags) LookupIPv4(ip net.IP) ([]Value, error) {
+	var results []Value
+
+	for _, v := range s.Values {
+		for _, addr := range v.Properties.AddressPrefixes {
+			_, pIPNet, err := net.ParseCIDR(addr)
+			if err != nil {
+				return nil, err
+			}
+
+			if pIPNet.Contains(ip) {
+				results = append(results, v)
+			}
+		}
+	}
+
+	return results, nil
 }
 
 //New is a constructor for ServiceTags

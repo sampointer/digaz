@@ -1,11 +1,30 @@
 package service_tags
 
 import (
+	"net"
 	"os"
 	"testing"
 
 	"github.com/stretchr/testify/require"
 )
+
+func TestLookupIPv4(t *testing.T) {
+	t.Parallel()
+
+	doc, err := os.Open("../testdata/ServiceTags_Public_20201214.json")
+	require.NoError(t, err)
+
+	st, err := New(doc)
+	require.NoError(t, err)
+
+	t.Run("looks up valid IPv4", func(t *testing.T) {
+		res, err := st.LookupIPv4(net.ParseIP("13.66.60.119"))
+		require.NoError(t, err)
+		require.NotZero(t, len(res))
+		// TODO: assert on result object equality with fixture
+	})
+
+}
 
 func TestServiceTags(t *testing.T) {
 	t.Parallel()

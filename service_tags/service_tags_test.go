@@ -20,8 +20,10 @@ func TestLookupIPv4(t *testing.T) {
 	t.Run("looks up valid IPv4", func(t *testing.T) {
 		res, err := st.LookupIPv4(net.ParseIP("13.66.60.119"))
 		require.NoError(t, err)
-		require.NotZero(t, len(res))
-		// TODO: assert on result object equality with fixture
+		t.Logf("%+#v", res[3])
+		require.Equal(t, 4, len(res))
+		require.Equal(t, res[0].Name, "ActionGroup")
+		require.Equal(t, res[0].Id, "ActionGroup")
 	})
 
 }

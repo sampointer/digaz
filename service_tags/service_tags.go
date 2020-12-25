@@ -27,6 +27,19 @@ type Property struct {
 	SystemService   string   `json:"systemService"`
 }
 
+//String makes Property a Stringer
+func (p *Property) String() string {
+	return fmt.Sprintf(
+		"changeNumber: %d networkFeatures: %v platform: %s region: %s regionId: %d systemService: %s",
+		p.ChangeNumber,
+		p.NetworkFeatures,
+		p.Platform,
+		p.Region,
+		p.RegionId,
+		p.SystemService,
+	)
+}
+
 //ServiceTags represents this document:
 //https://www.microsoft.com/en-us/download/details.aspx?id=56519
 type ServiceTags struct {

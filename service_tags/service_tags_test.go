@@ -25,6 +25,10 @@ func TestLookupIPv4(t *testing.T) {
 		require.Equal(t, res[0].Id, "ActionGroup")
 
 		require.Equal(t, 4, len(props))
+
+		for _, x := range props {
+			t.Log(x.String())
+		}
 	})
 
 	t.Run("does not look up IPv6", func(t *testing.T) {

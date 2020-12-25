@@ -20,7 +20,6 @@ func TestLookupIPv4(t *testing.T) {
 	t.Run("looks up valid IPv4", func(t *testing.T) {
 		res, err := st.LookupIPv4(net.ParseIP("13.66.60.119"))
 		require.NoError(t, err)
-		t.Logf("%+#v", res[3])
 		require.Equal(t, 4, len(res))
 		require.Equal(t, res[0].Name, "ActionGroup")
 		require.Equal(t, res[0].Id, "ActionGroup")
@@ -40,7 +39,6 @@ func TestLookupIPv6(t *testing.T) {
 	t.Run("looks up valid IPv6", func(t *testing.T) {
 		res, err := st.LookupIPv6(net.ParseIP("2603:1000:4:402::179"))
 		require.NoError(t, err)
-		t.Logf("%+#v", res[3])
 		require.Equal(t, 4, len(res))
 		require.Equal(t, res[0].Name, "ActionGroup")
 		require.Equal(t, res[0].Id, "ActionGroup")

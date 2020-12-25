@@ -36,6 +36,18 @@ type Property struct {
 //LookupIPv4 returns the Value structs that contain a prefix that contains the
 //passed IPv4 address
 func (s *ServiceTags) LookupIPv4(ip net.IP) ([]Value, error) {
+	return s.Lookup(ip)
+}
+
+//LookupIPv6 returns the Value structs that contain a prefix that contains the
+//passed IPv6 address
+func (s *ServiceTags) LookupIPv6(ip net.IP) ([]Value, error) {
+	return s.Lookup(ip)
+}
+
+//Lookup returns the Value structs that contain a prefix that contains the
+//passed IP address
+func (s *ServiceTags) Lookup(ip net.IP) ([]Value, error) {
 	var results []Value
 
 	for _, v := range s.Values {

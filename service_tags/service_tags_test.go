@@ -18,13 +18,19 @@ func TestLookupIPv4(t *testing.T) {
 	require.NoError(t, err)
 
 	t.Run("looks up valid IPv4", func(t *testing.T) {
-		res, err := st.LookupIPv4(net.ParseIP("13.66.60.119"))
+		res, props, err := st.LookupIPv4(net.ParseIP("13.66.60.119"))
 		require.NoError(t, err)
 		require.Equal(t, 4, len(res))
 		require.Equal(t, res[0].Name, "ActionGroup")
 		require.Equal(t, res[0].Id, "ActionGroup")
+
+		require.Equal(t, 4, len(props))
 	})
 
+	t.Run("does not look up IPv6", func(t *testing.T) {
+		_, _, err := st.LookupIPv4(net.ParseIP("2603:1000:4:402::179"))
+		require.Error(t, err)
+	})
 }
 
 func TestLookupIPv6(t *testing.T) {
@@ -37,13 +43,19 @@ func TestLookupIPv6(t *testing.T) {
 	require.NoError(t, err)
 
 	t.Run("looks up valid IPv6", func(t *testing.T) {
-		res, err := st.LookupIPv6(net.ParseIP("2603:1000:4:402::179"))
+		res, props, err := st.LookupIPv6(net.ParseIP("2603:1000:4:402::179"))
 		require.NoError(t, err)
 		require.Equal(t, 4, len(res))
 		require.Equal(t, res[0].Name, "ActionGroup")
 		require.Equal(t, res[0].Id, "ActionGroup")
+
+		require.Equal(t, 4, len(props))
 	})
 
+	t.Run("does not look up IPv4", func(t *testing.T) {
+		_, _, err := st.LookupIPv6(net.ParseIP("13.66.60.119"))
+		require.Error(t, err)
+	})
 }
 
 func TestServiceTags(t *testing.T) {

@@ -40,6 +40,16 @@ func (p *Property) String() string {
 	)
 }
 
+//JSON returns a JSON representation of Property
+func (p *Property) JSON() (string, error) {
+	out, err := json.Marshal(p)
+	if err != nil {
+		return "", err
+	}
+
+	return string(out), nil
+}
+
 //ServiceTags represents this document:
 //https://www.microsoft.com/en-us/download/details.aspx?id=56519
 type ServiceTags struct {

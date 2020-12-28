@@ -100,6 +100,14 @@ func TestServiceTags(t *testing.T) {
 				require.NotZero(t, len(st.Values[0].Properties.NetworkFeatures))
 			})
 
+			t.Run("is a Stringer", func(t *testing.T) {
+				t.Parallel()
+				require.Equal(t,
+					"changeNumber: 5 networkFeatures: [\"API\" \"NSG\" \"UDR\" \"FW\"] platform: \"Azure\" region: \"\" regionId: 0 systemService: \"ActionGroup\"",
+					st.Values[0].Properties.String(),
+				)
+			})
+
 			t.Run("has flat properties", func(t *testing.T) {
 				t.Parallel()
 				require.NotZero(t, st.Values[0].Properties.ChangeNumber)

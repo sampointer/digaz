@@ -30,7 +30,7 @@ type Property struct {
 //String makes Property a Stringer
 func (p *Property) String() string {
 	return fmt.Sprintf(
-		"changeNumber: %d networkFeatures: %v platform: %s region: %s regionId: %d systemService: %s",
+		"changeNumber: %d networkFeatures: %q platform: %q region: %q regionId: %d systemService: %q",
 		p.ChangeNumber,
 		p.NetworkFeatures,
 		p.Platform,

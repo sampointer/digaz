@@ -1,6 +1,7 @@
 package service_tags
 
 import (
+	"encoding/json"
 	"net"
 	"os"
 	"testing"
@@ -106,6 +107,16 @@ func TestServiceTags(t *testing.T) {
 					"changeNumber: 5 networkFeatures: [\"API\" \"NSG\" \"UDR\" \"FW\"] platform: \"Azure\" region: \"\" regionId: 0 systemService: \"ActionGroup\"",
 					st.Values[0].Properties.String(),
 				)
+			})
+
+			t.Run("implements JSON()", func(t *testing.T) {
+				t.Parallel()
+				e, err := json.Marshal(st.Values[0].Properties)
+				require.NoError(t, err)
+
+				j, err := st.Values[0].Properties.JSON()
+				require.NoError(t, err)
+				require.Equal(t, string(e), j)
 			})
 
 			t.Run("has flat properties", func(t *testing.T) {

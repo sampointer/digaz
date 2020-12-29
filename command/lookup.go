@@ -23,6 +23,9 @@ func Lookup(q string) ([]servicetags.Property, error) {
 
 	ip := net.ParseIP(q)
 	_, p, err := st.Lookup(ip)
+	if err != nil {
+		return properties, err
+	}
 
 	return p, nil
 }

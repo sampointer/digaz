@@ -16,7 +16,7 @@ func Fetch() (io.Reader, error) {
 	var client http.Client
 	var blank io.Reader
 
-	// This first page contains a burried link that we need to find to download
+	// This first page contains a buried link that we need to find to download
 	// the actual public IP ranges file
 	page, err := client.Get(u)
 	if err != nil {

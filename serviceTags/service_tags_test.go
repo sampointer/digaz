@@ -1,4 +1,4 @@
-package serviceTags
+package servicetags
 
 import (
 	"encoding/json"

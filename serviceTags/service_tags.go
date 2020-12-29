@@ -1,4 +1,4 @@
-package serviceTags
+package servicetags
 
 import (
 	"encoding/json"
@@ -101,19 +101,19 @@ func (s *ServiceTags) Lookup(ip net.IP) ([]Value, []Property, error) {
 
 //New is a constructor for ServiceTags
 func New(r io.Reader) (*ServiceTags, error) {
-	var serviceTags ServiceTags
+	var servicetags ServiceTags
 
 	doc, err := ioutil.ReadAll(r)
 	if err != nil {
 		return nil, err
 	}
 
-	err = json.Unmarshal(doc, &serviceTags)
+	err = json.Unmarshal(doc, &servicetags)
 	if err != nil {
 		return nil, err
 	}
 
-	return &serviceTags, nil
+	return &servicetags, nil
 }
 
 func isIPv4(ip net.IP) bool {

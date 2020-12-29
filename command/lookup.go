@@ -1,19 +1,28 @@
 package command
 
 import (
+	"github.com/sampointer/digaz/fetcher"
 	"github.com/sampointer/digaz/service_tags"
 
 	"net"
-	"strings"
 )
 
 //Lookup returns Property the AddressPrefixes of which include the passed IP
 //address
 func Lookup(q string) ([]service_tags.Property, error) {
-	var p []service_tags.Property
-	return p, nil
-}
+	var properties []service_tags.Property
+	doc, err := fetcher.Fetch()
+	if err != nil {
+		return properties, err
+	}
 
-func isIPv4(ip net.IP) bool {
-	return strings.Contains(ip.String(), ".")
+	st, err := service_tags.New(doc)
+	if err != nil {
+		return properties, err
+	}
+
+	ip := net.ParseIP(q)
+	_, p, err := st.Lookup(ip)
+
+	return p, nil
 }

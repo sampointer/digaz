@@ -50,7 +50,7 @@ you to look up details of any specific IP address.`,
 			for _, p := range res {
 				switch format {
 				case "text":
-					fmt.Println(p)
+					fmt.Println(p.String())
 				case "json":
 					out, err := p.JSON()
 					if err != nil {

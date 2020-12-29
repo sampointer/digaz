@@ -3,15 +3,8 @@
 Look-up region and other information for any Azure-owned IP address:
 
 ```bash
-$ digaz $(dig king.com +short)
-prefix: 34.64.0.0/10 scope: none service: none
-prefix: 34.120.0.0/16 scope: global service: Google Cloud
-```
-
-```bash
-$ digaz 8.8.8.8 2a00:1450:4009:814::200e
-prefix: 8.8.8.0/24 scope: none  service: none
-prefix: 2a00:1450::/32 scope: none service: none
+$ digaz $(dig dev.azure.com +short)
+changeNumber: 2 networkFeatures: ["API" "NSG" "UDR" "FW"] platform: "Azure" region: "" regionId: 0 systemService: "AzureFrontDoor"
 ```
 
 ## Installation
@@ -31,7 +24,7 @@ Debian and RPM packages can be found on the [releases][1] page.
 ```bash
 git clone https://github.com/sampointer/digaz; cd digaz
 docker build -t digaz .
-docker run --rm -it digaz $(dig king.com +short)
+docker run --rm -it digaz $(dig dev.azure.com +short)
 ```
 
 ## Similar tools

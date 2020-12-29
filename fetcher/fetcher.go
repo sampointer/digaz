@@ -11,6 +11,7 @@ import (
 const u string = "https://www.microsoft.com/en-us/download/confirmation.aspx?id=56519"
 const exp string = "https://download.*?\\.json"
 
+//Fetch downloads the service tags manifest
 func Fetch() (io.Reader, error) {
 	var client http.Client
 	var blank io.Reader

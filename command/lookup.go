@@ -1,22 +1,17 @@
 package command
 
 import (
-	"github.com/sampointer/digaz/fetcher"
 	"github.com/sampointer/digaz/servicetags"
 
+	"io"
 	"net"
 )
 
 //Lookup returns Property the AddressPrefixes of which include the passed IP
 //address
-func Lookup(q string) ([]servicetags.Property, error) {
+func Lookup(q string, doc *io.Reader) ([]servicetags.Property, error) {
 	var properties []servicetags.Property
-	doc, err := fetcher.Fetch()
-	if err != nil {
-		return properties, err
-	}
-
-	st, err := servicetags.New(doc)
+	st, err := servicetags.New(*doc)
 	if err != nil {
 		return properties, err
 	}

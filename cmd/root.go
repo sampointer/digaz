@@ -25,6 +25,7 @@ import (
 	"github.com/spf13/viper"
 
 	"github.com/sampointer/digaz/command"
+	"github.com/sampointer/digaz/fetcher"
 )
 
 var cfgFile string
@@ -40,8 +41,14 @@ you to look up details of any specific IP address.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	Run: func(cmd *cobra.Command, args []string) {
+		doc, err := fetcher.Fetch()
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+
 		for _, arg := range args {
-			res, err := command.Lookup(arg)
+			res, err := command.Lookup(arg, &doc)
 			if err != nil {
 				fmt.Println(err)
 				return

@@ -7,6 +7,8 @@ $ digaz $(dig dev.azure.com +short)
 changeNumber: 2 networkFeatures: ["API" "NSG" "UDR" "FW"] platform: "Azure" region: "" regionId: 0 systemService: "AzureFrontDoor"
 ```
 
+An online version of this tool can be found at [runson.cloud][r].
+
 ## Installation
 
 ### Homebrew
@@ -40,3 +42,4 @@ docker run --rm -it digaz $(dig dev.azure.com +short)
 [a]: https://github.com/sampointer/digaws
 [g]: https://github.com/sampointer/digg
 [z]: https://github.com/sampointer/digaz
+[r]: https://runson.cloud
